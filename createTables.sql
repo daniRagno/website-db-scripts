@@ -1,26 +1,30 @@
-CREATE TABLE Contents IF NOT EXISTS (
+CREATE TABLE IF NOT EXISTS Contents (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  permalink varchar(255),
+  title text,
+  body text,
+  author varchar(255),
+  draft tinyint(1),
+  featured tinyint(1),
+  pubblicationDate timestamp NOT NULL DEFAULT NOW(),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS Categories (
   id int(11) NOT NULL AUTO_INCREMENT,
   name varchar(255),
   permalink varchar(255),
-  description text,
   PRIMARY KEY (id)
 );
 
-CREATE TABLE Categories IF NOT EXISTS (
+CREATE TABLE IF NOT EXISTS Tags (
   id int(11) NOT NULL AUTO_INCREMENT,
   name varchar(255),
   permalink varchar(255),
   PRIMARY KEY (id)
 );
 
-CREATE TABLE Tags IF NOT EXISTS (
-  id int(11) NOT NULL AUTO_INCREMENT,
-  name varchar(255),
-  color varchar(255),
-  PRIMARY KEY (id)
-);
-
-CREATE TABLE Attachments IF NOT EXISTS (
+CREATE TABLE IF NOT EXISTS Attachments (
   id int(11) NOT NULL AUTO_INCREMENT,
   href varchar(255),
   contentType varchar(255),
@@ -28,8 +32,8 @@ CREATE TABLE Attachments IF NOT EXISTS (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE ContentsCategoriesTh IF NOT EXISTS (
-  id int(11) NOT_NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS ContentsCategoriesTh (
+  id int(11) NOT NULL AUTO_INCREMENT,
   contentId int(11),
   categoryId int(11),
   PRIMARY KEY (id),
@@ -37,8 +41,8 @@ CREATE TABLE ContentsCategoriesTh IF NOT EXISTS (
   FOREIGN KEY (categoryId) REFERENCES Categories(id)
 );
 
-CREATE TABLE ContentsTagsTh IF NOT EXISTS (
-  id int(11) NOT_NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS ContentsTagsTh (
+  id int(11) NOT NULL AUTO_INCREMENT,
   contentId int(11),
   tagId int(11),
   PRIMARY KEY (id),
@@ -47,8 +51,8 @@ CREATE TABLE ContentsTagsTh IF NOT EXISTS (
 
 );
 
-CREATE TABLE ContentsAttachmentsTh IF NOT EXISTS (
-  id int(11) NOT_NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS ContentsAttachmentsTh (
+  id int(11) NOT NULL AUTO_INCREMENT,
   contentId int(11),
   attachmentId int(11),
   PRIMARY KEY (id),

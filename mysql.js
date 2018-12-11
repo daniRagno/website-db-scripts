@@ -18,5 +18,7 @@ module.exports = sqlFilePath => {
     } else {
       console.log(results)
     }
+
+    process.exit()
   })
 }
